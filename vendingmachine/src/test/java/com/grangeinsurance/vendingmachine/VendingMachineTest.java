@@ -16,8 +16,8 @@ class VendingMachineTest {
 	
 	
 	@Test
-	void displayReadsINSERTCOINWhenEmpty () {
-		assertThat(machine.machineDisplay()).isEqualTo("INSERT COINS");
+	void displayReadsInsertCoinWhenEmpty () {
+		assertThat(machine.machineDisplay()).isEqualTo("INSERT COIN");
 	}
 	
 	@Test
@@ -39,9 +39,9 @@ class VendingMachineTest {
 	}
 	
 	@Test
-	void displayINSERTCOINWhenGivenPenny () {
+	void displayInsertCoinWhenGivenPenny () {
 		insertPenny();
-		assertThat(machine.machineDisplay()).isEqualTo("INSERT COINS");
+		assertThat(machine.machineDisplay()).isEqualTo("INSERT COIN");
 	}
 	
 	@Test
@@ -56,7 +56,7 @@ class VendingMachineTest {
 	@Test
 	void displayOneCentInChangeReturnForRejectedPenny() {
 		insertPenny();
-		assertThat(machine.machineDisplay()).isEqualTo("INSERT COINS");
+		assertThat(machine.machineDisplay()).isEqualTo("INSERT COIN");
 		assertThat(machine.coinReturn()).isEqualTo("Penny");
 	}
 	
@@ -109,7 +109,7 @@ class VendingMachineTest {
 	@Test
 	void displaysInsertCoinsWhenGumISSelected() {
 		selectGum();
-		assertThat(machine.machineDisplay()).isEqualTo("INSERT COINS");
+		assertThat(machine.machineDisplay()).isEqualTo("INSERT COIN");
 	}
 	
 	private void insertQuarter() {

@@ -7,8 +7,8 @@ import java.util.Map.Entry;
 
 public class VendingMachine {
 
-	float currentTotal = 0;
 	List<String> returnedCoins = new ArrayList<>();
+	float currentTotal = 0;
 	float priceOfItem = 0;
 	boolean itemSelected = false;
 	String priceFormat = "$%.2f";
@@ -43,7 +43,7 @@ public class VendingMachine {
 			currentTotal -= priceOfItem;
 			return "THANK YOU";
 		} else {
-			return "INSERT COINS";
+			return "INSERT COIN";
 		}
 	}
 	
@@ -60,8 +60,6 @@ public class VendingMachine {
 					returnedCoins.add(entry.getKey());
 				}
 			}
-			
-			//returnTotal += total;
 		}
 	}
 
