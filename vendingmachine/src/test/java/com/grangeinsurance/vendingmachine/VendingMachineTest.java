@@ -57,7 +57,7 @@ class VendingMachineTest {
 	void displayOneCentInChangeReturnForRejectedPenny() {
 		insertPenny();
 		assertThat(machine.machineDisplay()).isEqualTo("INSERT COINS");
-		assertThat(machine.coinReturn()).isEqualTo("$0.01");
+		assertThat(machine.coinReturn()).isEqualTo("Penny");
 	}
 	
 	@Test

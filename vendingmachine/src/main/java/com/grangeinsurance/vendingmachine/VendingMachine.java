@@ -1,14 +1,25 @@
 package com.grangeinsurance.vendingmachine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class VendingMachine {
 
 	float currentTotal = 0;
-	float returnTotal = 0;
+	List<String> returnedCoins = new ArrayList<>();
 	float priceOfItem = 0;
 	boolean itemSelected = false;
 	String priceFormat = "$%.2f";
+	
+	private static HashMap<String, Float> rejectedCoins = new HashMap<>();
+	static {
+	rejectedCoins.put("Penny", 0.01f);
+	rejectedCoins.put("Half Dollar", 0.50f);
+	rejectedCoins.put("Silver Dollar", 1.00f);
+	}
+	
 	private static HashMap<String, Float> acceptedCoins = new HashMap<>();
 	static {
 	acceptedCoins.put("Quarter", 0.25f);
@@ -37,14 +48,20 @@ public class VendingMachine {
 	}
 	
 	public Object coinReturn() {
-		return String.format(priceFormat, returnTotal);
+		return returnedCoins.toString().replace("[", "").replace("]", "");
 	}
 	
 	public void insertCoin (float total) {
 		if (acceptedCoins.containsValue(total)) {
 			currentTotal += total;
 		} else {
-			returnTotal += total;
+			for (Entry<String, Float> entry: rejectedCoins.entrySet()) {
+				if (entry.getValue() == total) {
+					returnedCoins.add(entry.getKey());
+				}
+			}
+			
+			//returnTotal += total;
 		}
 	}
 
