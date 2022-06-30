@@ -86,6 +86,7 @@ class VendingMachineTest {
 		insertQuarter();
 		selectCola();
 		assertThat(machine.machineDisplay()).isEqualTo("THANK YOU");
+		assertThat(machine.dispenseTray()).isEqualTo("Cola");
 	}
 	
 	@Test

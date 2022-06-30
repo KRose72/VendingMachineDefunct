@@ -8,9 +8,10 @@ import java.util.Map.Entry;
 public class VendingMachine {
 
 	List<String> returnedCoins = new ArrayList<>();
+	List<String> itemsInTray = new ArrayList<>();
 	float currentTotal = 0;
 	float priceOfItem = 0;
-	boolean itemSelected = false;
+	String itemSelected = "";
 	String priceFormat = "$%.2f";
 	
 	private static HashMap<String, Float> rejectedCoins = new HashMap<>();
@@ -35,12 +36,13 @@ public class VendingMachine {
 	availableItems.put("Candy", 0.65f);
 	}
 	public Object machineDisplay() {
-		if (currentTotal > 0 && !(itemSelected)) {
+		if (currentTotal > 0 && itemSelected == "") {
 			return String.format(priceFormat, currentTotal);
-		} else if (priceOfItem > currentTotal && itemSelected) {
+		} else if (priceOfItem > currentTotal && itemSelected != "") {
 			return "PRICE " + String.format(priceFormat, priceOfItem);
-		} else if (priceOfItem <= currentTotal && itemSelected) {
+		} else if (priceOfItem <= currentTotal && itemSelected != "") {
 			currentTotal -= priceOfItem;
+			itemsInTray.add(itemSelected);
 			return "THANK YOU";
 		} else {
 			return "INSERT COIN";
@@ -66,9 +68,13 @@ public class VendingMachine {
 	public void makeSelection(String item) {
 		if (availableItems.containsKey(item)) {
 			priceOfItem = availableItems.get(item);
-			itemSelected = true;
+			itemSelected = item;
 		}
 		
+	}
+
+	public Object dispenseTray() {
+		return itemsInTray.toString().replace("[", "").replace("]", "");
 	}
 
 
